@@ -101,9 +101,6 @@ wheels/
 pip-wheel-metadata/
 
 # =========================
-# Docker
-# =========================
-.dockerignore
 
 # =========================
 # Node.js (if frontend added)
