@@ -11,7 +11,7 @@ pipeline {
 
         GIT_CREDENTIALS_ID    = 'github-cred'
 
-        MANIFEST_REPO         = ''
+        MANIFEST_REPO         = 'https://github.com/Afnan3311/Simple_Fast_API_Application.git'
         MANIFEST_BRANCH       = 'main'
     }
 
