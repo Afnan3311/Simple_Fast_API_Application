@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-cred'
-        DOCKER_IMAGE          = 'afnan2004/fastapi-app
+        DOCKER_IMAGE          = 'afnan2004/simple_fast_api
 
         SONAR_SERVER_NAME     = 'sonarqube_env'
         SONAR_SCANNER_TOOL    = 'sonar-scanner'
