@@ -33,8 +33,8 @@ pipeline {
                     withSonarQubeEnv("${SONAR_SERVER_NAME}") {
                         sh """
                             ${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=fast-api-chatbot-key \
-                            -Dsonar.projectName=fast-api-chatbot-project \
+                            -Dsonar.projectKey=simple-fast-api \
+                            -Dsonar.projectName=simple-fast-api-project \
                             -Dsonar.sources=. \
                             -Dsonar.exclusions=**/venv/**,**/.venv/**,**/__pycache__/**,**/.pytest_cache/**,**/static/**,**/manifests/**
                         """
