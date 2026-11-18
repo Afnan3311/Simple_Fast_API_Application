@@ -94,12 +94,12 @@ pipeline {
 
                             sed -i -E \
                             "/name: fastapi-app/{n;s|image:.*|image: ${IMAGE_TAG}|}" \
-                            manifests/Deployment.yaml
+                            manifests/deployment.yaml
 
                             git config user.name "Afnan3311"
                             git config user.email "mohdafnan9617@gmail.com"
 
-                            git add manifests/Deployment.yaml
+                            git add manifests/deployment.yaml
 
                             if ! git diff --cached --quiet; then
 
