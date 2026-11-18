@@ -1,0 +1,158 @@
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.Python
+
+# =========================
+# Virtual Environments
+# =========================
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# =========================
+# Environment Variables
+# =========================
+.env.*
+!.env.example
+
+# =========================
+# FastAPI / Uvicorn
+# =========================
+*.log
+
+# =========================
+# Database
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Testing
+# =========================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# =========================
+# MyPy / Type Checking
+# =========================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# =========================
+# Ruff / Linting
+# =========================
+.ruff_cache/
+
+# =========================
+# IDEs and Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Distribution / Packaging
+# =========================
+dist/
+build/
+eggs/
+parts/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+wheels/
+*.whl
+*.tar.gz
+pip-wheel-metadata/
+
+# =========================
+# Docker
+# =========================
+.dockerignore
+
+# =========================
+# Node.js (if frontend added)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Secrets / Keys
+# =========================
+*.pem
+*.key
+*.cert
+secrets/
+
+# =========================
+# Temporary Files
+# =========================
+*.tmp
+*.bak
+*.old
+```
+
+## Important for your Jenkins + Docker project
+
+**Do not add these files to `.gitignore`:**
+
+| File | Why it should be committed |
+|---|---|
+| `Dockerfile` | Jenkins needs it to build your Docker image |
+| `requirements.txt` | Required to install Python dependencies |
+| `main.py` | Your FastAPI application source code |
+| `Jenkinsfile` | Contains your CI/CD pipeline |
+| `.gitignore` | Shares ignore rules with Git |
+| `.env.example` | Provides a template for environment variables |
+
+**One important note:** `.gitignore` does not remove files that Git is already tracking. If a sensitive `.env` file was previously committed, you must remove it from Git tracking and rotate any exposed credentials.
+
+Your project structure should look like:
+
+```text
+fastapi-app/
+├── .gitignore
+├── Dockerfile
+├── Jenkinsfile
+├── requirements.txt
+└── main.py
+```
+
+This is a suitable `.gitignore` for your current FastAPI CI/CD project.
