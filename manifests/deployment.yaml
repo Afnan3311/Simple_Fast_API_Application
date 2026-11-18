@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: fastapi-app
-          image: afnan2004/simple_fast_app:latest
+          image: afnan2004/simple_fast_app:2
           imagePullPolicy: Always
 
           ports:
