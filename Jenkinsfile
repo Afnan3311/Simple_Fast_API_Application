@@ -21,6 +21,15 @@ pipeline {
                 checkout scm
             }
         }
+    stage('Install Dependencies and Run Tests') {
+    steps {
+        sh '''
+            pip install -r requirements.txt
+            pip install pytest pytest-cov
+            pytest --cov=. --cov-report=xml
+        '''
+    }
+}
 
         stage('SonarQube Analysis') {
     steps {
