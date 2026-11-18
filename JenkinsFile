@@ -4,14 +4,14 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-cred'
-        DOCKER_IMAGE          = 'afnan2004/simple_fast_api
+        DOCKER_IMAGE          = 'afnan2004/simple_fast_app'
 
         SONAR_SERVER_NAME     = 'sonarqube_env'
         SONAR_SCANNER_TOOL    = 'sonar-scanner'
 
         GIT_CREDENTIALS_ID    = 'github-cred'
 
-        MANIFEST_REPO         = 'https://github.com/Afnan3311/Simple_Fast_API_Application.git'
+        MANIFEST_REPO         = ''
         MANIFEST_BRANCH       = 'main'
     }
 
@@ -31,10 +31,10 @@ pipeline {
                     withSonarQubeEnv("${SONAR_SERVER_NAME}") {
                         sh """
                             ${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=fastapi-app-key \
-                            -Dsonar.projectName=fastapi-app-project \
+                            -Dsonar.projectKey=fast-api-chatbot-key \
+                            -Dsonar.projectName=fast-api-chatbot-project \
                             -Dsonar.sources=. \
-                            -Dsonar.exclusions=**/venv/**,**/.venv/**,**/__pycache__/**,**/.pytest_cache/**
+                            -Dsonar.exclusions=**/venv/**,**/.venv/**,**/__pycache__/**,**/.pytest_cache/**,**/static/**
                         """
                     }
                 }
@@ -58,7 +58,7 @@ pipeline {
                             docker build \
                             -t ${DOCKER_IMAGE}:${BUILD_NUMBER} \
                             -t ${DOCKER_IMAGE}:latest \
-                            -f Dockerfile .
+                            .
 
                             docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}
                             docker push ${DOCKER_IMAGE}:latest
@@ -89,17 +89,17 @@ pipeline {
                             IMAGE_TAG="${DOCKER_IMAGE}:${BUILD_NUMBER}"
 
                             sed -i -E \
-                            "s|(^[[:space:]]*image:).*|\\1${IMAGE_TAG}|" \
-                            manifests/deployment.yaml
+                            "/name: fast-api-chatbot/{n;s|image:.*|image: ${IMAGE_TAG}|}" \
+                            manifests/Deployment.yaml
 
                             git config user.name "Afnan3311"
                             git config user.email "mohdafnan9617@gmail.com"
 
-                            git add manifests/deployment.yaml
+                            git add manifests/Deployment.yaml
 
                             if ! git diff --cached --quiet; then
 
-                                git commit -m "Update FastAPI image to ${BUILD_NUMBER} [skip ci]"
+                                git commit -m "chore(manifest): update fast-api-chatbot image tag to ${BUILD_NUMBER} [skip ci]"
 
                                 PUSH_URL="https://${GH_USER}:${GH_TOKEN}@${MANIFEST_REPO#https://}"
 
@@ -117,7 +117,7 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline executed successfully! FastAPI image pushed and manifest repository updated.'
+            echo 'Pipeline executed successfully! fast-api-chatbot image built, pushed, and manifest repo updated.'
         }
 
         failure {
