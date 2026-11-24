@@ -4,6 +4,7 @@ kind: Deployment
 
 metadata:
   name: fastapi-app
+  namespace: argocd
   labels:
     app: fastapi-app
 
