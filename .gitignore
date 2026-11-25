@@ -152,4 +152,3 @@ fastapi-app/
 └── main.py
 ```
 
-This is a suitable `.gitignore` for your current FastAPI CI/CD project.
